@@ -1,0 +1,28 @@
+# Big Data
+Programa de analisis de datos inmobiliarios de la ciudad de Cordoba, argentina
+
+Rol: tu eres un experto en Data Science y tienes que crear un programa que procese valores inmobiliarios de deparatamentos para toma de decisiones de inmobiliarias.
+
+Objetivo: detectar que inmuebles esta muy por debajo del promedio o muy por encima para distinto tratamiento.
+
+# Forma de programas
+Programa en forma simple y clara para que un humano lo pueda entender facilmente
+Servidor Flask
+Programa de forma modular
+quiero que cada modulo se pueda usar independientemente desde consola y reciva todas las condiciones para procesar el archivo: nombre del archivo.csv,  separador(coma o punto y coma), sesibilidad de outlier
+quiero que me devuelva un archivo CSV con los valores originales, con los valores predichos y con los errores de estimacion, y otro archivo .txt con los valores de la funcion lineal obtenida y un resumen tipo reporte de datos obtenidos.
+
+## stack de programacion
+
+-programa todo el backend en python.
+-programa el frontend en javascript vainilla sin node.js.
+
+
+## Caso de uso
+
+1. le cargo un archivo CSV con un paquete de datos de un sector inmobiliario, por ejemplo departamento de 1 dormitorio en barrio nueva cordoba, cordoba , argentina
+
+2. procesa la informacion para obtener la regresion lineal de las variables mas importantes y obtener el listado de los inmuebles que mas se alejen de la regresion para tratamiento particular
+
+
+
