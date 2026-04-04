@@ -20,14 +20,17 @@ from sklearn.metrics import r2_score, mean_squared_error
 
 
 COLUMNAS_X = [
-    "superficie_m2",
-    "cocina_separada",
-    "monoambiente",
-    "a_estrenar",
-    "patio",
-    "planta_baja",
+    "M2",
+    "Balcon2",
+    "Amenities",
+    "cocinaSep",
+    "Monoambiente",
+    "A Estrenar",
+    "Patio PB",
+    "PB",
 ]
-COLUMNA_Y = "precio"
+
+COLUMNA_Y = "Precio"
 
 
 def ajustar_modelo(df):

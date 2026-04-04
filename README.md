@@ -7,6 +7,14 @@ Detecta inmuebles sobrevaluados y subvaluados mediante regresión lineal múltip
 ## Instalación
 
 ```bash
+# Crear el entorno virtual
+python -m venv venv
+
+# Activarlo
+source venv/bin/activate        # Linux / Mac
+venv\Scripts\activate           # Windows
+
+# Instalar dependencias
 pip install -r requirements.txt
 ```
 
