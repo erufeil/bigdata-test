@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+venv/
+.venv/
+env/
+
+# Flask
+instance/
+.env
+*.env
+
+# Datos generados por el programa
+output/
+*.log
+
+# Archivos CSV de datos (excepto muestras de ejemplo)
+# Descomenta si no quieres versionar los CSV de entrada
+# *.csv
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
