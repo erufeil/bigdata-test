@@ -183,3 +183,6 @@ flask run
 
 Crea solo el backend en python y el readme de cómo se usa.
 
+### Etapa 2
+
+Crea un archivo de salida tipo txt con los resultados estadísticos obtenidos y tambien el archivo csv de respuesta.

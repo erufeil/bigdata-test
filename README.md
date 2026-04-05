@@ -64,52 +64,53 @@ GET /results
 
 ---
 
-## Usar los módulos directamente desde consola
+## Procesar desde consola (sin servidor)
 
-### Solo regresión (muestra ecuación y métricas)
 ```bash
-python services/regression.py --archivo datos.csv
-python services/regression.py --archivo datos.csv --separador punto_y_coma
+python procesar.py --archivo csvmuestra1.csv
+python procesar.py --archivo csvmuestra1.csv --sigma 1.5
+python procesar.py --archivo csvmuestra1.csv --separador punto_y_coma --salida_dir mis_resultados/
 ```
 
-### Regresión + detección de outliers + archivos de salida
-```bash
-python services/outliers.py \
-    --archivo datos.csv \
-    --sigma 2.0 \
-    --salida_csv resultado.csv \
-    --salida_txt reporte.txt
-```
+Los archivos se guardan automáticamente en `results/` (o la carpeta indicada):
+- `resultado_<nombre>_<timestamp>.csv`
+- `reporte_<nombre>_<timestamp>.txt`
 
 Opciones disponibles:
 
-| Parámetro     | Default | Descripción                              |
-|---------------|---------|------------------------------------------|
-| `--archivo`   | —       | Ruta al CSV de entrada (obligatorio)     |
-| `--sigma`     | 2.0     | Sensibilidad outlier (mayor = menos outliers) |
-| `--separador` | auto    | `coma`, `punto_y_coma` o `auto`          |
-| `--salida_csv`| —       | Ruta del CSV resultado (opcional)        |
-| `--salida_txt`| —       | Ruta del TXT reporte (opcional)          |
+| Parámetro      | Default   | Descripción                                   |
+|----------------|-----------|-----------------------------------------------|
+| `--archivo`    | —         | Ruta al CSV de entrada (obligatorio)          |
+| `--sigma`      | 2.0       | Sensibilidad outlier (mayor = menos outliers) |
+| `--separador`  | auto      | `coma`, `punto_y_coma` o `auto`               |
+| `--salida_dir` | results/  | Carpeta donde se guardan los archivos         |
+
+### Solo ver el modelo (sin guardar archivos)
+```bash
+python services/regression.py --archivo csvmuestra1.csv
+```
 
 ---
 
 ## Formato del CSV de entrada
 
 ```
-precio,superficie_m2,cocina_separada,monoambiente,a_estrenar,patio,planta_baja
-85000,52,1,0,0,0,0
-72000,48,0,1,0,0,1
+Precio;M2;Balcon2;Amenities;cocinaSep;Monoambiente;A Estrenar;Patio PB;PB
+85000;52;1;0;1;0;0;0;0
+72000;48;0;0;0;1;0;0;1
 ```
 
-| Columna          | Tipo  | Descripción                  |
-|------------------|-------|------------------------------|
-| `precio`         | float | Precio total en USD          |
-| `superficie_m2`  | float | Superficie cubierta en m²    |
-| `cocina_separada`| 0/1   | 1 = tiene cocina separada    |
-| `monoambiente`   | 0/1   | 1 = es monoambiente          |
-| `a_estrenar`     | 0/1   | 1 = a estrenar               |
-| `patio`          | 0/1   | 1 = tiene patio              |
-| `planta_baja`    | 0/1   | 1 = planta baja              |
+| Columna        | Tipo  | Descripción                    |
+|----------------|-------|--------------------------------|
+| `Precio`       | float | Precio total en USD            |
+| `M2`           | float | Superficie cubierta en m²      |
+| `Balcon2`      | 0/1   | 1 = tiene balcón               |
+| `Amenities`    | 0/1   | 1 = tiene amenities            |
+| `cocinaSep`    | 0/1   | 1 = cocina separada            |
+| `Monoambiente` | 0/1   | 1 = es monoambiente            |
+| `A Estrenar`   | 0/1   | 1 = a estrenar                 |
+| `Patio PB`     | 0/1   | 1 = tiene patio en planta baja |
+| `PB`           | 0/1   | 1 = unidad en planta baja      |
 
 ---
 

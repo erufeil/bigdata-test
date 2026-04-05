@@ -1,0 +1,134 @@
+============================================================
+  REPORTE DE ANALISIS INMOBILIARIO
+============================================================
+Fecha y hora   : 2026-04-04 17:54:08
+Archivo origen : csvmuestra1.csv
+Sigma utilizado: 1.3
+
+ECUACION DEL MODELO
+------------------------------------------------------------
+precio = +75047.93 +16.07 * M2 +9586.31 * Balcon2 +19811.19 * Amenities +703.37 * cocinaSep -7325.32 * Monoambiente +6719.28 * A Estrenar -4894.56 * Patio PB +6566.92 * PB
+
+COEFICIENTES
+------------------------------------------------------------
+  M2                  : +16.0717 USD
+  Balcon2             : +9586.3064 USD
+  Amenities           : +19811.1934 USD
+  cocinaSep           : +703.3659 USD
+  Monoambiente        : -7325.3222 USD
+  A Estrenar          : +6719.2797 USD
+  Patio PB            : -4894.5644 USD
+  PB                  : +6566.9231 USD
+
+METRICAS DEL MODELO
+------------------------------------------------------------
+  R²             : 0.2459
+  RMSE           : 21019.81 USD
+  Std. residuos  : 21019.81 USD
+  Umbral outlier : ±27325.75 USD
+
+RESUMEN DE INMUEBLES
+------------------------------------------------------------
+  Total analizados : 620
+  Normales         : 526
+  Outliers total   : 94
+    Sobrevaluados  : 62
+    Subvaluados    : 32
+
+DETALLE DE OUTLIERS
+------------------------------------------------------------
+  Fila   6 | sobrevaluado  | Precio:    126000  Predicho:     85502  Residuo:    +40498 USD
+  Fila   9 | subvaluado    | Precio:     55000  Predicho:     97174  Residuo:    -42174 USD
+  Fila  14 | sobrevaluado  | Precio:    140000  Predicho:    111888  Residuo:    +28112 USD
+  Fila  16 | sobrevaluado  | Precio:    150000  Predicho:    105490  Residuo:    +44510 USD
+  Fila  18 | subvaluado    | Precio:     66000  Predicho:    105872  Residuo:    -39872 USD
+  Fila  33 | sobrevaluado  | Precio:    143200  Predicho:     85952  Residuo:    +57248 USD
+  Fila  43 | sobrevaluado  | Precio:    154000  Predicho:    118985  Residuo:    +35015 USD
+  Fila  44 | sobrevaluado  | Precio:    149000  Predicho:    106245  Residuo:    +42755 USD
+  Fila  51 | sobrevaluado  | Precio:    179000  Predicho:     85888  Residuo:    +93112 USD
+  Fila  57 | sobrevaluado  | Precio:    161200  Predicho:     85952  Residuo:    +75248 USD
+  Fila  60 | sobrevaluado  | Precio:    118420  Predicho:     76077  Residuo:    +42343 USD
+  Fila  61 | sobrevaluado  | Precio:    115000  Predicho:     85406  Residuo:    +29594 USD
+  Fila  68 | sobrevaluado  | Precio:    145000  Predicho:    105731  Residuo:    +39269 USD
+  Fila  70 | sobrevaluado  | Precio:    115000  Predicho:     86141  Residuo:    +28859 USD
+  Fila  76 | sobrevaluado  | Precio:    129000  Predicho:     86254  Residuo:    +42746 USD
+  Fila  82 | sobrevaluado  | Precio:    110000  Predicho:     76571  Residuo:    +33429 USD
+  Fila  84 | sobrevaluado  | Precio:    116500  Predicho:     82715  Residuo:    +33785 USD
+  Fila  91 | sobrevaluado  | Precio:    115000  Predicho:     85406  Residuo:    +29594 USD
+  Fila  93 | sobrevaluado  | Precio:    115000  Predicho:     86302  Residuo:    +28698 USD
+  Fila  95 | sobrevaluado  | Precio:    115000  Predicho:     86141  Residuo:    +28859 USD
+  Fila  98 | subvaluado    | Precio:     69000  Predicho:    105872  Residuo:    -36872 USD
+  Fila  99 | sobrevaluado  | Precio:    118420  Predicho:     76077  Residuo:    +42343 USD
+  Fila 108 | subvaluado    | Precio:     69000  Predicho:    105760  Residuo:    -36760 USD
+  Fila 123 | sobrevaluado  | Precio:    118000  Predicho:     86222  Residuo:    +31778 USD
+  Fila 127 | sobrevaluado  | Precio:    153000  Predicho:    118969  Residuo:    +34031 USD
+  Fila 137 | sobrevaluado  | Precio:    160000  Predicho:     93351  Residuo:    +66649 USD
+  Fila 139 | sobrevaluado  | Precio:    170000  Predicho:     86061  Residuo:    +83939 USD
+  Fila 155 | sobrevaluado  | Precio:    170000  Predicho:     86061  Residuo:    +83939 USD
+  Fila 177 | sobrevaluado  | Precio:    115520  Predicho:     85293  Residuo:    +30227 USD
+  Fila 183 | subvaluado    | Precio:     77500  Predicho:    105808  Residuo:    -28308 USD
+  Fila 195 | sobrevaluado  | Precio:    118000  Predicho:     86222  Residuo:    +31778 USD
+  Fila 230 | sobrevaluado  | Precio:    125000  Predicho:     86414  Residuo:    +38586 USD
+  Fila 243 | sobrevaluado  | Precio:    169000  Predicho:    102583  Residuo:    +66417 USD
+  Fila 244 | subvaluado    | Precio:     86000  Predicho:    113769  Residuo:    -27769 USD
+  Fila 247 | sobrevaluado  | Precio:    135500  Predicho:     96032  Residuo:    +39468 USD
+  Fila 249 | subvaluado    | Precio:     67000  Predicho:    105792  Residuo:    -38792 USD
+  Fila 260 | sobrevaluado  | Precio:    127000  Predicho:     83113  Residuo:    +43887 USD
+  Fila 262 | subvaluado    | Precio:     90000  Predicho:    118455  Residuo:    -28455 USD
+  Fila 264 | sobrevaluado  | Precio:    160000  Predicho:    105952  Residuo:    +54048 USD
+  Fila 265 | sobrevaluado  | Precio:    113000  Predicho:     76716  Residuo:    +36284 USD
+  Fila 274 | subvaluado    | Precio:     62000  Predicho:     96286  Residuo:    -34286 USD
+  Fila 275 | sobrevaluado  | Precio:    120000  Predicho:     75771  Residuo:    +44229 USD
+  Fila 281 | sobrevaluado  | Precio:    128000  Predicho:     96398  Residuo:    +31602 USD
+  Fila 288 | subvaluado    | Precio:     90000  Predicho:    118455  Residuo:    -28455 USD
+  Fila 298 | sobrevaluado  | Precio:    160000  Predicho:     96848  Residuo:    +63152 USD
+  Fila 308 | subvaluado    | Precio:     72000  Predicho:    105329  Residuo:    -33329 USD
+  Fila 351 | sobrevaluado  | Precio:    160000  Predicho:    105952  Residuo:    +54048 USD
+  Fila 356 | sobrevaluado  | Precio:    145000  Predicho:    112049  Residuo:    +32951 USD
+  Fila 365 | sobrevaluado  | Precio:    142000  Predicho:     92941  Residuo:    +49059 USD
+  Fila 366 | sobrevaluado  | Precio:    140000  Predicho:    111840  Residuo:    +28160 USD
+  Fila 369 | subvaluado    | Precio:     62000  Predicho:     96286  Residuo:    -34286 USD
+  Fila 372 | sobrevaluado  | Precio:    125000  Predicho:     83355  Residuo:    +41645 USD
+  Fila 376 | sobrevaluado  | Precio:    120000  Predicho:     75771  Residuo:    +44229 USD
+  Fila 379 | subvaluado    | Precio:     55000  Predicho:     85132  Residuo:    -30132 USD
+  Fila 388 | sobrevaluado  | Precio:    125000  Predicho:     85518  Residuo:    +39482 USD
+  Fila 390 | sobrevaluado  | Precio:    123803  Predicho:     71757  Residuo:    +52046 USD
+  Fila 397 | sobrevaluado  | Precio:    115000  Predicho:     86302  Residuo:    +28698 USD
+  Fila 398 | sobrevaluado  | Precio:    148900  Predicho:     95775  Residuo:    +53125 USD
+  Fila 399 | subvaluado    | Precio:     87300  Predicho:    118664  Residuo:    -31364 USD
+  Fila 401 | sobrevaluado  | Precio:    119000  Predicho:     86302  Residuo:    +32698 USD
+  Fila 404 | sobrevaluado  | Precio:    148900  Predicho:     95775  Residuo:    +53125 USD
+  Fila 406 | sobrevaluado  | Precio:    141300  Predicho:    106242  Residuo:    +35058 USD
+  Fila 416 | sobrevaluado  | Precio:    123803  Predicho:     71757  Residuo:    +52046 USD
+  Fila 418 | sobrevaluado  | Precio:    123360  Predicho:     86382  Residuo:    +36978 USD
+  Fila 419 | sobrevaluado  | Precio:    118000  Predicho:     76350  Residuo:    +41650 USD
+  Fila 428 | subvaluado    | Precio:     60000  Predicho:     88009  Residuo:    -28009 USD
+  Fila 445 | sobrevaluado  | Precio:    110000  Predicho:     72319  Residuo:    +37681 USD
+  Fila 466 | sobrevaluado  | Precio:    125000  Predicho:     96334  Residuo:    +28666 USD
+  Fila 469 | subvaluado    | Precio:     75000  Predicho:    105169  Residuo:    -30169 USD
+  Fila 470 | subvaluado    | Precio:     60000  Predicho:     88009  Residuo:    -28009 USD
+  Fila 480 | subvaluado    | Precio:     75000  Predicho:    105169  Residuo:    -30169 USD
+  Fila 482 | subvaluado    | Precio:     42000  Predicho:     75771  Residuo:    -33771 USD
+  Fila 483 | subvaluado    | Precio:     65000  Predicho:     94277  Residuo:    -29277 USD
+  Fila 489 | sobrevaluado  | Precio:    130000  Predicho:     86752  Residuo:    +43248 USD
+  Fila 497 | sobrevaluado  | Precio:    135000  Predicho:     76378  Residuo:    +58622 USD
+  Fila 499 | sobrevaluado  | Precio:    125000  Predicho:     91905  Residuo:    +33095 USD
+  Fila 511 | subvaluado    | Precio:     58000  Predicho:     85980  Residuo:    -27980 USD
+  Fila 512 | subvaluado    | Precio:     75000  Predicho:    112359  Residuo:    -37359 USD
+  Fila 513 | sobrevaluado  | Precio:    135000  Predicho:     91905  Residuo:    +43095 USD
+  Fila 514 | sobrevaluado  | Precio:    139700  Predicho:    105378  Residuo:    +34322 USD
+  Fila 519 | subvaluado    | Precio:     85000  Predicho:    112591  Residuo:    -27591 USD
+  Fila 537 | subvaluado    | Precio:     65000  Predicho:     94277  Residuo:    -29277 USD
+  Fila 539 | subvaluado    | Precio:     75000  Predicho:    105281  Residuo:    -30281 USD
+  Fila 544 | subvaluado    | Precio:     85000  Predicho:    112591  Residuo:    -27591 USD
+  Fila 545 | subvaluado    | Precio:     75000  Predicho:    105169  Residuo:    -30169 USD
+  Fila 556 | subvaluado    | Precio:     62000  Predicho:    105695  Residuo:    -43695 USD
+  Fila 576 | subvaluado    | Precio:     11111  Predicho:     88652  Residuo:    -77541 USD
+  Fila 589 | subvaluado    | Precio:     62000  Predicho:    105695  Residuo:    -43695 USD
+  Fila 591 | sobrevaluado  | Precio:    135000  Predicho:     76378  Residuo:    +58622 USD
+  Fila 601 | subvaluado    | Precio:     75000  Predicho:    112511  Residuo:    -37511 USD
+  Fila 607 | sobrevaluado  | Precio:    144000  Predicho:     86013  Residuo:    +57987 USD
+  Fila 609 | sobrevaluado  | Precio:    143000  Predicho:    106097  Residuo:    +36903 USD
+  Fila 611 | subvaluado    | Precio:      1160  Predicho:     85518  Residuo:    -84358 USD
+  Fila 617 | sobrevaluado  | Precio:    160000  Predicho:     86141  Residuo:    +73859 USD
+============================================================

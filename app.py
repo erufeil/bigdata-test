@@ -44,8 +44,8 @@ app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024  # 16 MB max upload
 # ---------------------------------------------------------------------------
 
 def _cargar_csv(ruta):
-    """Carga un CSV detectando automaticamente el separador."""
-    return pd.read_csv(ruta, sep=None, engine="python")
+    """Carga un CSV detectando automaticamente el separador y eliminando BOM."""
+    return pd.read_csv(ruta, sep=None, engine="python", encoding="utf-8-sig")
 
 
 def _leer_index():
@@ -105,8 +105,40 @@ def _construir_reporte(resultado, umbral, sigma, nombre_archivo, df_final):
         f"  Outliers total   : {n_sobre + n_sub}",
         f"    Sobrevaluados  : {n_sobre}",
         f"    Subvaluados    : {n_sub}",
-        "=" * 60,
+        "",
+        "SOBREVALUADOS",
+        "-" * 60,
     ]
+
+    def fila_str(i, fila):
+        return (
+            f"  Fila {i+1:>3} | "
+            f"Precio: {fila['Precio']:>9.0f}  "
+            f"Predicho: {fila['Precio_predicho']:>9.0f}  "
+            f"Residuo: {fila['residuo']:>+9.0f} USD"
+        )
+
+    sobre = df_final[df_final["tipo_outlier"] == "sobrevaluado"]
+    if sobre.empty:
+        lineas.append("  (ninguno)")
+    else:
+        for i, fila in sobre.iterrows():
+            lineas.append(fila_str(i, fila))
+
+    lineas += [
+        "",
+        "SUBVALUADOS",
+        "-" * 60,
+    ]
+
+    sub = df_final[df_final["tipo_outlier"] == "subvaluado"]
+    if sub.empty:
+        lineas.append("  (ninguno)")
+    else:
+        for i, fila in sub.iterrows():
+            lineas.append(fila_str(i, fila))
+
+    lineas.append("=" * 60)
     return "\n".join(lineas) + "\n"
 
 
@@ -180,7 +212,7 @@ def analyze():
     resultado = ajustar_modelo(df)
 
     # --- Outliers ---
-    df["precio_predicho"] = resultado["precio_predicho"].round(2)
+    df["Precio_predicho"] = resultado["precio_predicho"].round(2)
     df["residuo"]         = resultado["residuos"].round(2)
     df, umbral = etiquetar_outliers(
         df,
