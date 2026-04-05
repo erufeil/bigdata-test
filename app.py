@@ -23,6 +23,7 @@ from flask import Flask, request, jsonify, send_from_directory, render_template
 
 from services.regression import ajustar_modelo
 from services.outliers import etiquetar_outliers
+from services.enriquecer import enriquecer_desde_descripcion
 
 # ---------------------------------------------------------------------------
 # Configuracion
@@ -31,6 +32,7 @@ BASE_DIR     = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR     = os.path.join(BASE_DIR, "data")
 RESULTS_DIR  = os.path.join(BASE_DIR, "results")
 INDEX_FILE   = os.path.join(RESULTS_DIR, "index.json")
+CONFIG_FILE  = os.path.join(BASE_DIR, "config_keywords.json")
 
 os.makedirs(DATA_DIR,    exist_ok=True)
 os.makedirs(RESULTS_DIR, exist_ok=True)
@@ -207,6 +209,11 @@ def analyze():
         df = _cargar_csv(ruta)
     except Exception as e:
         return jsonify({"error": f"No se pudo leer el CSV: {str(e)}"}), 422
+
+    # --- Enriquecimiento desde descripcion (si existe config_keywords.json) ---
+    columnas_enriquecidas = []
+    if os.path.exists(CONFIG_FILE):
+        df, columnas_enriquecidas = enriquecer_desde_descripcion(df, CONFIG_FILE)
 
     # --- Modelo ---
     resultado = ajustar_modelo(df)

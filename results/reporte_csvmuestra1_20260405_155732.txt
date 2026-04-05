@@ -1,0 +1,76 @@
+============================================================
+  REPORTE DE ANALISIS INMOBILIARIO
+============================================================
+Fecha y hora   : 2026-04-05 15:57:32
+Archivo origen : csvmuestra1.csv
+Sigma utilizado: 2.0
+
+ECUACION DEL MODELO
+------------------------------------------------------------
+precio = +74770.23 +31.18 * M2 +10032.89 * Balcon2 +19331.00 * Amenities +98.87 * cocinaSep -8143.67 * Monoambiente +6322.00 * A Estrenar -4972.32 * Patio PB +6220.02 * PB
+
+COEFICIENTES
+------------------------------------------------------------
+  M2                  : +31.1755 USD
+  Balcon2             : +10032.8945 USD
+  Amenities           : +19330.9950 USD
+  cocinaSep           : +98.8748 USD
+  Monoambiente        : -8143.6677 USD
+  A Estrenar          : +6322.0004 USD
+  Patio PB            : -4972.3239 USD
+  PB                  : +6220.0192 USD
+
+METRICAS DEL MODELO
+------------------------------------------------------------
+  R²             : 0.2552
+  RMSE           : 20527.70 USD
+  Std. residuos  : 20527.70 USD
+  Umbral outlier : ±41055.41 USD
+
+RESUMEN DE INMUEBLES
+------------------------------------------------------------
+  Total analizados : 618
+  Normales         : 585
+  Outliers total   : 33
+    Sobrevaluados  : 30
+    Subvaluados    : 3
+
+SOBREVALUADOS
+------------------------------------------------------------
+  Fila  16 | Precio:    150000  Predicho:    106161  Residuo:    +43839 USD
+  Fila  33 | Precio:    143200  Predicho:     87360  Residuo:    +55840 USD
+  Fila  44 | Precio:    149000  Predicho:    107626  Residuo:    +41374 USD
+  Fila  51 | Precio:    179000  Predicho:     87235  Residuo:    +91765 USD
+  Fila  57 | Precio:    161200  Predicho:     87360  Residuo:    +73840 USD
+  Fila  60 | Precio:    118420  Predicho:     76765  Residuo:    +41655 USD
+  Fila  76 | Precio:    129000  Predicho:     86679  Residuo:    +42321 USD
+  Fila  99 | Precio:    118420  Predicho:     76765  Residuo:    +41655 USD
+  Fila 137 | Precio:    160000  Predicho:     93928  Residuo:    +66072 USD
+  Fila 139 | Precio:    170000  Predicho:     86305  Residuo:    +83695 USD
+  Fila 155 | Precio:    170000  Predicho:     86305  Residuo:    +83695 USD
+  Fila 243 | Precio:    169000  Predicho:    102566  Residuo:    +66434 USD
+  Fila 260 | Precio:    127000  Predicho:     82438  Residuo:    +44562 USD
+  Fila 264 | Precio:    160000  Predicho:    105792  Residuo:    +54208 USD
+  Fila 275 | Precio:    120000  Predicho:     76173  Residuo:    +43827 USD
+  Fila 298 | Precio:    160000  Predicho:     96694  Residuo:    +63306 USD
+  Fila 351 | Precio:    160000  Predicho:    105792  Residuo:    +54208 USD
+  Fila 365 | Precio:    142000  Predicho:     92939  Residuo:    +49061 USD
+  Fila 372 | Precio:    125000  Predicho:     82906  Residuo:    +42094 USD
+  Fila 376 | Precio:    120000  Predicho:     76173  Residuo:    +43827 USD
+  Fila 390 | Precio:    123803  Predicho:     71643  Residuo:    +52160 USD
+  Fila 398 | Precio:    148900  Predicho:     95878  Residuo:    +53022 USD
+  Fila 404 | Precio:    148900  Predicho:     95878  Residuo:    +53022 USD
+  Fila 416 | Precio:    123803  Predicho:     71643  Residuo:    +52160 USD
+  Fila 489 | Precio:    130000  Predicho:     87645  Residuo:    +42355 USD
+  Fila 497 | Precio:    135000  Predicho:     76085  Residuo:    +58915 USD
+  Fila 513 | Precio:    135000  Predicho:     91628  Residuo:    +43372 USD
+  Fila 590 | Precio:    135000  Predicho:     76085  Residuo:    +58915 USD
+  Fila 606 | Precio:    144000  Predicho:     86211  Residuo:    +57789 USD
+  Fila 615 | Precio:    160000  Predicho:     86461  Residuo:    +73539 USD
+
+SUBVALUADOS
+------------------------------------------------------------
+  Fila   9 | Precio:     55000  Predicho:     96596  Residuo:    -41596 USD
+  Fila 556 | Precio:     62000  Predicho:    105293  Residuo:    -43293 USD
+  Fila 588 | Precio:     62000  Predicho:    105293  Residuo:    -43293 USD
+============================================================

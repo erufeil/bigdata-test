@@ -33,6 +33,7 @@ quiero que me devuelva un archivo CSV con los valores originales, con los valore
 >
 >
 
+[ask before edit mode]
 > hola claude, necesito que crees el git.ignore
 
 > Ejecuta la etapa 1
@@ -62,4 +63,21 @@ abris el regression.py y le pones:
 
 > dame una respuesta en el archivo rta_regresion.md
 
+escribimos la etapa 3 asi
+## Etapa 3
+
+Crea un modulo que reciva un csv con datos en bruto, recien escrapeados, y genere archivo nuevo csv con columnas nuevas generadas a partir identificacion de palabras claves de una columna principal del archivo de los datos en bruto. Y eliminá las columnas vacias.
+
+Por ejemplo:
+Columna principal: descripción. 
+Crear la columna C_integrada poniendo un 1 si encuentra en la columna principal las palabras: cocina integrada, cocina americana, cocina sectorizada, cocina semiseparada; caso contrario poner un cero.
+Crear la columna C_independiente poniendo un 1 si encuentra en la columna principal las palabras: cocina independiente, cocina separada; caso contrario poner un cero.
+Crear la columna Sep_check haciendo la suma de C_integrada y C_independiente.
+
+Crear la columna Patio poniendo un 1 si encuentra en la columna principal las palabras: patio. 
+
+En las comparaciones forzar siempre lowcase.
+
+y luego en plan mode le pedimos:
+> Hola Claude, estamos planificando, no escribas codigo. Quiero planificar la etapa 3 y quiero agregar nuevas variables binarias de acuerdo a la aparicion de palabras claves en una columna de descripcion. El moddulo deberia ser adaptable a cualquier tabla de entrada. Mejora la redaccion para su desarrollo.
 

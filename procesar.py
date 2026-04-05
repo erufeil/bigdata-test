@@ -1,12 +1,13 @@
 """
 procesar.py
 -----------
-Pipeline completo: carga CSV → regresion lineal → deteccion de outliers
-→ guarda CSV resultado + TXT reporte.
+Pipeline completo: carga CSV → enriquecimiento (opcional) → regresion lineal
+→ deteccion de outliers → guarda CSV resultado + TXT reporte.
 
 Uso:
     python procesar.py --archivo datos.csv
     python procesar.py --archivo datos.csv --sigma 1.5
+    python procesar.py --archivo datos.csv --config config_keywords.json
     python procesar.py --archivo datos.csv --sigma 2.0 --separador punto_y_coma
     python procesar.py --archivo datos.csv --salida_dir mi_carpeta/
 
@@ -26,6 +27,7 @@ import pandas as pd
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from services.regression import ajustar_modelo
 from services.outliers import etiquetar_outliers
+from services.enriquecer import enriquecer_desde_descripcion
 
 
 # ---------------------------------------------------------------------------
@@ -118,11 +120,18 @@ def construir_reporte(resultado, umbral, sigma, nombre_archivo, df):
     return "\n".join(lineas) + "\n"
 
 
-def procesar(archivo, sigma, separador, salida_dir):
+def procesar(archivo, sigma, separador, salida_dir, config=None):
     # --- Cargar ---
     df = cargar_csv(archivo, separador)
     nombre_archivo = os.path.basename(archivo)
     print(f"Archivo cargado : {nombre_archivo}  ({len(df)} filas)")
+
+    # --- Enriquecimiento desde descripcion (opcional) ---
+    columnas_enriquecidas = []
+    if config and os.path.exists(config):
+        df, columnas_enriquecidas = enriquecer_desde_descripcion(df, config)
+        if columnas_enriquecidas:
+            print(f"Columnas nuevas : {columnas_enriquecidas}")
 
     # --- Modelo ---
     resultado = ajustar_modelo(df)
@@ -171,10 +180,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Analisis inmobiliario: regresion + outliers → CSV + TXT."
     )
-    parser.add_argument("--archivo",    required=True,         help="Ruta al CSV de entrada")
+    parser.add_argument("--archivo",    required=True,           help="Ruta al CSV de entrada")
     parser.add_argument("--sigma",      type=float, default=2.0, help="Sensibilidad outlier (default 2.0)")
-    parser.add_argument("--separador",  default="auto",        help="coma | punto_y_coma | auto")
-    parser.add_argument("--salida_dir", default="results",     help="Carpeta de salida (default: results/)")
+    parser.add_argument("--separador",  default="auto",          help="coma | punto_y_coma | auto")
+    parser.add_argument("--salida_dir", default="results",       help="Carpeta de salida (default: results/)")
+    parser.add_argument("--config",     default=None,            help="Ruta al JSON de palabras clave (opcional)")
     args = parser.parse_args()
 
-    procesar(args.archivo, args.sigma, args.separador, args.salida_dir)
+    procesar(args.archivo, args.sigma, args.separador, args.salida_dir, args.config)

@@ -186,3 +186,117 @@ Crea solo el backend en python y el readme de cómo se usa.
 ### Etapa 2
 
 Crea un archivo de salida tipo txt con los resultados estadísticos obtenidos y tambien el archivo csv de respuesta.
+
+### Etapa 3
+
+Crear el módulo `services/enriquecer.py` que lee una columna de texto libre (descripción)
+de un CSV en bruto y genera nuevas columnas binarias (0/1) a partir de la detección
+de palabras clave configurables. El módulo debe ser adaptable a cualquier tabla de
+entrada: el nombre de la columna y el diccionario de variables se definen en un
+archivo externo `config_keywords.json`, sin modificar el código.
+
+**Archivo de configuración `config_keywords.json`:**
+
+Define la columna de origen y la lista de variables a generar. Cada variable tiene
+un nombre de columna de salida y una lista de palabras/frases clave a buscar
+(búsqueda case-insensitive). Ejemplo:
+
+```json
+{
+  "columna_descripcion": "description",
+  "variables": [
+    {
+      "nombre": "C_integrada",
+      "palabras_clave": ["cocina integrada", "cocina americana", "cocina sectorizada", "cocina semiseparada"]
+    },
+    {
+      "nombre": "C_independiente",
+      "palabras_clave": ["cocina independiente", "cocina separada"]
+    },
+    {
+      "nombre": "Patio",
+      "palabras_clave": ["patio"]
+    },
+    {
+      "nombre": "PB",
+      "palabras_clave": ["pb", "planta baja"]
+    },
+    {
+      "nombre": "Amenities",
+      "palabras_clave": ["amenities", "terraza con", "juegos infantiles", "gimnasio", "piscina", "pileta", "quincho", "sum", "salon de usos multiples"]
+    },
+    {
+      "nombre": "Balcon",
+      "palabras_clave": ["balcon", "balcón"]
+    },
+    {
+      "nombre": "Monoambiente",
+      "palabras_clave": ["monoambiente", "mono ambiente", "mono-ambiente", "ambiente unico", "ambiente único"]
+    },
+    {
+      "nombre": "A estrenar",
+      "palabras_clave": ["a estrenar"]
+    },
+    {
+      "nombre": "Descartar",
+      "palabras_clave": ["1, 2 y 3 dormitorios", "1, 1 y 1/2", "1-2-3 dormitorios", "2 dormitorios", "3 dormitorios"] 
+    }
+  ],
+  "columnas_derivadas": [
+    {
+      "nombre": "Sep_check",
+      "operacion": "suma",
+      "fuentes": ["C_integrada", "C_independiente"]
+    }
+  ],
+  "columnas_extraidas": [
+    {
+      "nombre": "id_publicacion",
+      "columna_origen": "url",
+      "patron": "(\\d{8})\\.html"
+    }
+  ]
+}
+```
+
+**Función principal `enriquecer_desde_descripcion(df, ruta_config)`:**
+
+1. Leer el JSON de configuración.
+2. Verificar que la columna de descripción exista. Si no existe, avisar y continuar sin cambios.
+3. Por cada variable: buscar las palabras clave en el texto (lowcase), asignar 1 si hay
+   coincidencia, 0 si no.
+4. Calcular columnas derivadas (ej: `Sep_check = C_integrada + C_independiente`).
+5. Eliminar columnas completamente vacías del DataFrame resultante.
+6. Devolver el DataFrame enriquecido y la lista de columnas generadas.
+
+**Punto de inserción en el pipeline** (antes de la regresión):
+
+```
+Cargar CSV → enriquecer_desde_descripcion() → ajustar_modelo() → etiquetar_outliers() → Guardar salidas
+```
+
+El paso es opcional: si no se pasa `--config`, el pipeline continúa igual que antes.
+
+**Uso desde consola:**
+
+```bash
+python services/enriquecer.py --archivo datos.csv --config config_keywords.json --salida enriquecido.csv
+```
+
+## Etapa 4
+
+Volver numerica la columna price_value, si no es numero poner 0.
+Volver numerica square_meter_area_0
+
+Sanitización
+
+Borrar los registros completos si Sep_check tiene valor 0 o 2.
+Borrar los registros completos si Descartar tiene valor 1.
+Borrar los registros completos si el valor price_value es menor a 29000.
+Borrar los registros completos si el valor square_meter_area_0 es menor a 20.
+
+Generar un nuevo cvs datos_sani solo con las siguientes columnas el siguiente orden:
+'Precio': "price_value", 'M2' : "square_meter_area_0", 'Balcon' : "Balcon", 'Amenities' : "Amenities", 'cocinaSep' : "C_independiente", 'Monoambiente' : "Monoambiente", 'A Estrenar' : "A estrenar", 'Patio PB' : "Patio", 'PB' : "PB".
+
+Que esta informacion sea leida de un archivo json, que tambien será usado para armar las variables "y" que leerá procesar.py
+

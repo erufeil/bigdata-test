@@ -1,0 +1,55 @@
+{
+  "columna_descripcion": "description",
+  "variables": [
+    {
+      "nombre": "C_integrada",
+      "palabras_clave": ["cocina integrada", "cocina americana", "cocina sectorizada", "cocina semiseparada"]
+    },
+    {
+      "nombre": "C_independiente",
+      "palabras_clave": ["cocina independiente", "cocina separada"]
+    },
+    {
+      "nombre": "Patio",
+      "palabras_clave": ["patio"]
+    },
+    {
+      "nombre": "PB",
+      "palabras_clave": ["pb", "planta baja"]
+    },
+    {
+      "nombre": "Amenities",
+      "palabras_clave": ["amenities", "terraza con", "juegos infantiles", "gimnasio", "piscina", "pileta", "quincho", "sum", "salon de usos multiples"]
+    },
+    {
+      "nombre": "Balcon",
+      "palabras_clave": ["balcon", "balcón"]
+    },
+    {
+      "nombre": "Monoambiente",
+      "palabras_clave": ["monoambiente", "mono ambiente", "mono-ambiente", "ambiente unico", "ambiente único"]
+    },
+    {
+      "nombre": "A estrenar",
+      "palabras_clave": ["a estrenar"]
+    },
+    {
+      "nombre": "Descartar",
+      "palabras_clave": ["1, 2 y 3 dormitorios", "1, 1 y 1/2", "1-2-3 dormitorios", "2 dormitorios", "3 dormitorios"] 
+    }
+  ],
+  "columnas_derivadas": [
+    {
+      "nombre": "Sep_check",
+      "operacion": "suma",
+      "fuentes": ["C_integrada", "C_independiente"]
+    }
+  ],
+  "columnas_extraidas": [
+    {
+      "nombre": "id_publicacion",
+      "columna_origen": "url",
+      "patron": "(\\d{8})\\.html"
+    }
+  ]
+}
